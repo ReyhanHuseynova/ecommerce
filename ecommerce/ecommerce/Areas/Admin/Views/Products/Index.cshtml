@@ -1,0 +1,76 @@
+﻿@model List<Product>
+<div class="content">
+    <h3>Product</h3>
+    <div class="content-data">
+
+        <div class="col-11">
+            <h4>All Products</h4>
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-primary text-white" asp-action="Create">Create</a>
+               
+            </div>
+           
+            <table>
+             
+                <thead>
+                    <tr>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Category Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Product pro in Model)
+                    {
+                        <tr>
+                           
+                            <td><img style="width:200px; height:100px; object-fit:cover" src="~/img/product/@pro.Image" /></td>
+                            <td>@pro.ProductName</td>
+                            <td>@pro.Price</td>
+                            <td>@pro.Category.Name</td>
+                            <td>@pro.Description</td>
+                            <td>
+                                @if (pro.IsDeactive)
+                                {
+                                    <span class="text-danger">Passiv</span>
+                                }
+                                else
+                                {
+                                    <span class="text-success">Active</span>
+                                }
+                            </td>
+                            <td>
+
+
+                                <span class="btn btn-info">
+                                    <a class="text-white" asp-action="Detail" asp-route-id="@pro.Id">Detail</a>
+                                </span>
+                                <span class="btn btn-info">
+                                    <a class="text-white" asp-action="Update" asp-route-id="@pro.Id">Update</a>
+                                </span>
+                                @if (pro.IsDeactive)
+                                {
+                                    <span class="btn btn-danger">
+                                        <a class="text-white" asp-action="Activity" asp-route-id="@pro.Id">Deactivate</a>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="btn btn-success">
+                                        <a class="text-white" asp-action="Activity" asp-route-id="@pro.Id">Activate</a>
+                                    </span>
+                                }
+
+                            </td>
+                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

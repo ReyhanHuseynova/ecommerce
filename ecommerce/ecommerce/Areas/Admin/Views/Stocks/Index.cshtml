@@ -1,0 +1,86 @@
+﻿@model List<Stock> 
+@{
+	int quantity = 0;
+	int stocks = 0;
+	int diference = 0;
+}
+<div class="content">
+	<h3>Stock</h3>
+	<div class="content-data">
+		
+		<div class="col-11">
+			<h4>All Stock Detail</h4>
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-primary text-white" asp-action="Create">Create</a>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Category</th>
+						<th>Stock in</th>
+						<th>Stock Out</th>
+						<th>Available</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (Stock stock in Model)
+					{
+						<tr>
+							<td>@stock.Product.ProductName</td>
+							<td>@stock.Product.Category.Name</td>
+							<td>@stock.Quantity</td>
+							<td>@stock.StockOut </td>
+							 @if(stock.Quantity>= stock.StockOut)
+							 {
+									quantity = stock.Quantity;
+									stocks = stock.StockOut;
+								diference = quantity - stocks;
+
+							}
+
+							<td>@diference</td>
+								
+
+							
+							
+							<td>
+								@if (stock.IsDeactive)
+								{
+									<span class="text-danger">Passiv</span>
+								}
+								else
+								{
+									<span class="text-success">Active</span>
+								}
+							</td>
+							<td>
+
+
+
+								<span class="btn btn-info">
+									<a class="text-white" asp-action="Update" asp-route-id="@stock.Id">Update</a>
+								</span>
+								@if (stock.IsDeactive)
+								{
+									<span class="btn btn-danger">
+										<a class="text-white" asp-action="Activity" asp-route-id="@stock.Id">Deactivate</a>
+									</span>
+								}
+								else
+								{
+									<span class="btn btn-success">
+										<a class="text-white" asp-action="Activity" asp-route-id="@stock.Id">Activate</a>
+									</span>
+								}
+
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

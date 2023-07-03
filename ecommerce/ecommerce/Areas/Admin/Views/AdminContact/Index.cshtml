@@ -1,0 +1,58 @@
+﻿@model List<Contact>
+<div class="content">
+	<h3>Contact</h3>
+	<div class="content-detail">
+		<table>
+			<thead>
+				<tr>
+					<th>FirstName</th>
+					<th>LastName</th>
+					<th>EmailAddress</th>
+					<th>Message</th>
+					<th>Status</th>
+					<th>Action</th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (Contact con in Model)
+				{
+					<tr>
+						<td>@con.FirstName</td>
+						<td>@con.LastName</td>
+						<td>@con.EmailAddress</td>
+						<td>@con.YourMessage</td>
+						<td>
+							@if (con.Isdeactive)
+							{
+								<span class="text-success">Passiv</span>
+							}
+							else
+							{
+								<span class="text-danger">Active</span>
+							}
+						</td>
+						<td>
+							<div class="btn btn-info">
+								<a style="color:white" asp-action="Detail" asp-route-id="@con.Id">Detail</a>
+							</div>
+							@if (con.Isdeactive)
+							{
+								<div class ="btn btn-success">
+									<a asp-action="Activity" style="color:white" asp-route-id="@con.Id" >Activate</a>
+								</div>
+							}
+							else
+							{
+								<div class="btn btn-danger">
+									<a asp-action="Activity" style="color:white" asp-route-id="@con.Id">Deactivate</a>
+								</div>
+							}
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

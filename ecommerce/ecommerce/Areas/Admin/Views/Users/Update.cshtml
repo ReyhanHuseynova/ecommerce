@@ -1,0 +1,187 @@
+﻿@model UpdateVM
+
+   @* <div class="col-md-9 ">
+        <div class="x_panel">
+            <div class="card-header d-flex justify-content-between ">
+                <h5 class="mb-0">User Update</h5>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            </div>
+            <div class="x_content">
+                <br>
+                <form method="post" data-parsley-validate="" novalidate="">
+                    <div>
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" required="">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Surname"></label>
+                        <input asp-for="Surname" class="form-control" data-parsley-trigger="change" required="">
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control" data-parsley-trigger="change" required="">
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" data-parsley-trigger="change" required="">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+
+                    <label for="heard"></label>
+                    <select name="roleName" class="form-control" required="">
+                        @if (Model.Role == "Admin")
+                        {
+
+                            <option selected value="Admin">Admin</option>
+                            <option value="Member">Member</option>
+                        }
+                        else
+                        {
+
+                            <option value="Admin">Admin</option>
+                            <option selected value="Member">Member</option>
+                        }
+
+                    </select>
+                    <div class="form-group row " style="margin-top: 10px ">
+                        <div class="col-md-9 col-sm-9  offset-md-3 d-flex justify-content-end">
+
+                            <button  type="submit" class="btn btn-warning"><i class="bi bi-upload"></i> Submit</button>
+                            <a style="margin-left:5px" asp-action="Index" class="btn btn-dark"><i class="bi bi-backspace-fill"></i> Go Back</a>
+
+                        </div>
+
+                    </div>
+
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}*@
+
+<div class="container">
+	<main>
+		@*<div class="breadcrumb">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li> / </li>
+				<li>Account</li>
+			</ul>
+		</div>*@ <!-- End of Breadcrumb-->
+
+		<div class="account-page">
+			<div class="profile">
+				<div class="profile-img">
+					@*<img src="~/img/product/img5.jpg">*@
+					<h2>@Model.Name</h2>
+					<p>@Model.Email</p>
+				</div>
+				@*<ul>
+					<li><a href="account.html" class="active">Account <span>></span></a></li>
+					<li><a href="orders.html">My Orders <span>></span></a></li>
+					<li><a href="change-password.html">Change Password <span>></span></a></li>
+					<li><a href="">Logout <span>></span></a></li>
+				</ul>*@
+			</div>
+			<div class="account-detail">
+				@*<h2>Account</h2>*@
+				<div class="billing-detail">
+					<form method="post" class="checkout-form">
+						<div class="form-inline">
+							<div class="form-group">
+								<label asp-for="Name"></label>
+								<input asp-for="Name">
+							</div>
+							<div class="form-group">
+								<label asp-for="Surname"></label>
+								<input asp-for="Surname">
+							</div>
+							<div class="form-group">
+								<label asp-for="Email"></label>
+								<input asp-for="Email">
+							</div>
+							<div class="form-group">
+								<label asp-for="Username"></label>
+								<input asp-for="Username">
+							</div>
+
+							<label for="heard"></label>
+							<select name="roleName" class="form-control" required="">
+								@if (Model.Role == "Admin")
+								{
+
+									<option selected value="Admin">Admin</option>
+									<option value="Member">Member</option>
+								}
+								else
+								{
+
+									<option value="Admin">Admin</option>
+									<option selected value="Member">Member</option>
+								}
+
+							</select>
+						</div>
+						@*<div class="form-group">
+							<label>Company Name (Optional)</label>
+							<input type="text" id="cname" name="cname">
+						</div>
+						<div class="form-inline">
+							<div class="form-group">
+								<label>Country</label>
+								<select id="country" name="country">
+									<option selected>---Select a Country---</option>
+									<option value="pakistan">Pakistan</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>City</label>
+								<select id="city" name="city">
+									<option selected>---Select a City---</option>
+									<option value="karachi">Karachi</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Address</label>
+							<textarea style="resize:none" id="address" name="address" rows="3">xyz area, street 24 </textarea>
+						</div>
+						<div class="form-inline">
+							<div class="form-group">
+								<label>Tel</label>
+								<input type="text" id="tel" name="tel" minlength="11" maxlength="11" value="555-XXXXXXX">
+							</div>
+							<div class="form-group">
+								<label>Mobile</label>
+								<input type="text" id="mobile" name="mobile" minlength="11" maxlength="11" value="555-XXXXXXX">
+							</div>
+						</div>*@
+						<div class="form-group">
+							<label></label>
+							<button type="submit">Update</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main> <!-- Main Area -->
+</div>
+

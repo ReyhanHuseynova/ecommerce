@@ -1,0 +1,87 @@
+﻿@model HomeVM
+<div class="container">
+	<main>
+		<div class="breadcrumb">
+			<ul>
+				<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+				<li> / </li>
+				<li>Shop</li>
+			</ul>
+		</div> <!-- End of Breadcrumb-->
+
+		<div class="new-product-section shop">
+			<div class="sidebar">
+				<div class="sidebar-widget">
+					<h3>Category</h3>
+					<ul>
+						
+						@foreach (Category cat in Model.Categories)
+						{
+							<li><a href="/Shops/List/@cat.Id" >@cat.Name</a></li>
+						}
+						
+
+					</ul>
+				</div>
+				<div class="sidebar-widget">
+					<h3>Range Filter</h3>
+					<p>
+						<label for="amount"></label>
+						<input type="text" id="amount" readonly style="border:0; color:#F0E68C;  margin-bottom: 5px;">
+					</p>
+					<div id="slider-range"></div>
+				</div>
+			</div>
+			<div class="product-content" id="myProducts">
+				@foreach(Product pro in Model.Products)
+				{
+					<div class="product" >
+						<a  href="/Products/Detail/@pro.Id">
+							<img src="~/img/product/@pro.Image">
+						</a>
+						<div class="product-detail">
+							<h3>@pro.Category.Name</h3>
+							<h2>@pro.ProductName</h2>
+						@*	<a href="/Cart/Add/@pro.Id" >Add to Cart</a>*@
+							<form action="/Cart/Add" method="post">
+								<input type="hidden" name="productId" value="@pro.Id">
+								<button type="submit">Add to Cart</button>
+							</form>
+							<p>Rs.@pro.Price/-</p>
+						</div>
+					</div>
+				}
+				
+			</div>
+		</div> <!-- New Product Section -->
+		<div class="load-more">
+			<a  id="loadMore">Load More</a>
+			<input id="productCount" type="hidden" value="@ViewBag.ProductCount" />
+		</div>
+	</main> <!-- Main Area -->
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@section Scripts{
+	<script src="~/js/loadmore.js"></script>
+
+
+}
+
+
+<script>
+	$(function () {
+		$("#slider-range").slider({
+			range: true,
+			min: 0,
+			max: 10000,
+			values: [1000, 3000],
+			slide: function (event, ui) {
+				$("#amount").val("Rs." + ui.values[0] + " - Rs." + ui.values[1]);
+			}
+		});
+		$("#amount").val("Rs." + $("#slider-range").slider("values", 0) +
+			" - Rs." + $("#slider-range").slider("values", 1));
+	});
+</script>

@@ -1,0 +1,19 @@
+﻿@model List<Product>
+@foreach (Product pro in Model)
+{
+	<div class="product" data-id="cat-@pro.CategoryId">
+		<a href="/Products/Detail/@pro.Id">
+			<img src="~/img/product/@pro.Image">
+		</a>
+		<div class="product-detail">
+			<h3>@pro.Category.Name</h3>
+			<h2>@pro.ProductName</h2>
+			@*<a href="">Add to Cart</a>*@
+			<form action="/Cart/Add" method="post">
+				<input type="hidden" name="productId" value="@pro.Id">
+				<button type="submit">Add to Cart</button>
+			</form>
+			<p>Rs.@pro.Price/-</p>
+		</div>
+	</div>
+}

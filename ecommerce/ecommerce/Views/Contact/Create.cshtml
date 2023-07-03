@@ -1,0 +1,39 @@
+﻿@model Contact
+
+<div class="container">
+	<main>
+		<div class="contact">
+			<h2 class="heading">Contact Form</h2>
+			<form class="checkout-form" method="post">
+				<div class="form-group">
+					<label asp-for="FirstName"></label>
+					<input asp-for="FirstName">
+					<span class="text-danger" asp-validation-for="FirstName"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="LastName"></label>
+					<input asp-for="LastName">
+					<span class="text-danger" asp-validation-for="LastName"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EmailAddress"> </label>
+					<input asp-for="EmailAddress">
+					<span class="text-danger" asp-validation-for="EmailAddress"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="YourMessage"></label>
+					<textarea asp-for="YourMessage" rows="10"></textarea>
+					<span class="text-danger" asp-validation-for="YourMessage"></span>
+				</div>
+				<div class="form-group">
+					
+					<button  type="submit">Send</button>
+				</div>
+			</form>
+		</div>
+	</main> <!-- Main Area -->
+</div>
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+	@*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">*@
+}

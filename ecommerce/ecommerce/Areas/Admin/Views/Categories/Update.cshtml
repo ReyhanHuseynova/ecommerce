@@ -1,0 +1,44 @@
+﻿@model Category
+<div class="content">
+	<h3>Catogory</h3>
+	<div class="content-data">
+		<div class="content-form">
+			<form method="post">
+				<h4>Add Category</h4>
+				<div class="form-inline">
+					<div class="form-group">
+						<label asp-for="Name"> </label>
+						<input asp-for="Name">
+						<span class="text-danger" asp-validation-for="Name"></span>
+					</div>
+
+
+				</div>
+				<div>
+					<div class="form-group">
+						<label asp-for="TypeCategory"> </label>
+
+						<select asp-for="TypeCategory">
+							<option>---Select a Type---</option>
+
+							<option value="MEN">MEN</option>
+							<option value="WOMEN">WOMEN</option>
+						</select>
+
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label></label>
+
+					<button class="btn btn-warning" type="submit">Update Category</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,84 @@
+﻿@model HomeVM
+<div class="container">
+	<main>
+		<div class="slider">
+			@foreach(Slider slider in Model.Sliders)
+			{
+				<div class="slide-1">
+					<img src="~/img/slider/@slider.Image">
+					<div class="slider-text">
+						<h3>@slider.Sale</h3>
+						<h2>@slider.Title</h2>
+						<a href="#">Shop Now</a>
+					</div>
+				</div>
+
+			}
+		</div> <!-- slider -->
+
+		<div class="new-product-section">
+			<div class="product-section-heading">
+				<h2>Tranding Products <img src="~/img/icons/increase.png"></h2>
+				<h3>Most selling product for the month</h3>
+			</div>
+			<div class="product-content">
+				@foreach (Product product in Model.Products)
+				{
+					<div class="product">
+						<a href="/Products/Detail/@product.Id">
+							<img src="~/img/product/@product.Image">
+						</a>
+						<div class="product-detail">
+							<h3>@product.Category.Name</h3>  @*type name yanina*@
+							<h2>@product.ProductName</h2>
+							@*<a href="#">Add to Cart</a>*@
+							<form action="/Cart/Add" method="post">
+								<input type="hidden" name="productId" value="@product.Id">
+								<button type="submit">Add to Cart</button>
+							</form>
+							<p>Rs.@product.Price/-</p>
+						</div>
+					</div>
+				}
+				
+			</div>
+		</div> <!-- New Product Section -->
+
+		<div class="collection">
+			<div class="men-collection">
+				<h2>Men's Collection</h2>
+			</div>
+			<div class="women-collection">
+				<h2>Women's Collection</h2>
+			</div>
+		</div> <!-- Collection Section -->
+
+		<div class="new-product-section">
+			<div class="product-section-heading">
+				<h2>Recommend Products <img src="~/img/icons/good_quality.png"></h2>
+				<h3>OUR BEST PRODUCTS RECOMMENDED FOR YOU</h3>
+			</div>
+			<div class="product-content">
+				@foreach (Product pro in ViewBag.Collection)
+				{
+					<div class="product">
+						<a href="/Products/Detail/@pro.Id">
+							<img src="~/img/product/@pro.Image">
+						</a>
+						<div class="product-detail">
+							<h3>@pro.Category.Name</h3>
+							<h2>@pro.ProductName</h2>
+							@*<a href="#">Add to Cart</a>*@
+							<form action="/Cart/Add" method="post">
+								<input type="hidden" name="productId" value="@pro.Id">
+								<button type="submit">Add to Cart</button>
+							</form>
+							<p>Rs.@pro.Price/-</p>
+						</div>
+					</div>
+
+				}
+			</div>
+		</div> <!-- Recommend Product Section -->
+	</main> <!-- Main Area -->
+</div>

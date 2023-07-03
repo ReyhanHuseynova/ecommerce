@@ -1,0 +1,65 @@
+﻿@model List<Category>
+<div class="content">
+	<h3>Catogory</h3>
+	<div class="col-11">
+		
+		<div class="content-detail">
+			<h4>All Categories</h4>
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-primary text-white" asp-action="Create">Create</a>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Type</th>
+						<th>Status</th>
+						<th>Action</th>
+						
+					</tr>
+					
+				</thead>
+				<tbody>
+					@foreach (Category category in Model)
+					{
+						<tr>
+							<td>@category.Name</td>
+							<td>@category.TypeCategory</td>
+							<td>
+								@if (category.IsDeactive)
+								{
+									<span class="text-danger" >Passiv</span>
+								}
+								else
+								{
+									<span class="text-success" >Active</span>
+								}
+							</td>
+							<td>
+
+
+
+								<span class="btn btn-info">
+									<a class="text-white" asp-action="Update" asp-route-id="@category.Id">Update</a>
+								</span>
+								@if (category.IsDeactive)
+								{
+									<span class="btn btn-danger">
+										<a class="text-white" asp-action="Activity" asp-route-id="@category.Id">Deactivate</a>
+									</span>
+								}
+								else
+								{
+									<span class="btn btn-success">
+										<a class="text-white" asp-action="Activity" asp-route-id="@category.Id">Activate</a>
+									</span>
+								}
+								
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

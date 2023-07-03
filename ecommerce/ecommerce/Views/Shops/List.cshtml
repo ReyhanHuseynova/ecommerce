@@ -1,0 +1,40 @@
+﻿@model List<Product>
+<div class="container">
+    <main>
+        <div class="breadcrumb">
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li> / </li>
+                <li>Shop</li>
+            </ul>
+        </div> <!-- End of Breadcrumb-->
+        
+        
+
+        <div class="new-product-section shop">
+            <div class="product-content" id="myProducts">
+                @foreach (Product pro in Model)
+                {
+                    <div class="product">
+                        <a href="/Products/Detail/@pro.Id">
+                            <img src="~/img/product/@pro.Image">
+                        </a>
+                        <div class="product-detail">
+                            <h3>@pro.Category.Name</h3>
+                            <h2>@pro.ProductName</h2>
+                            <a href="#">Add to Cart</a>
+                            <p>Rs.@pro.Price/-</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+
+
+    </main> <!-- Main Area -->
+</div>
+@section Scripts{
+    <script src="~/js/loadmore.js"></script>
+}

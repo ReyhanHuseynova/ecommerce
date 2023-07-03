@@ -1,0 +1,114 @@
+﻿@model Product
+<div class="container">
+	<main>
+		<div class="breadcrumb">
+			<ul>
+				<li><a asp-controller="Home" asp-action="Index">Home</a></li>
+				<li> / </li>
+				<li><a asp-controller="Shops" asp-action="Index">Shop</a></li>
+				<li> / </li>
+				<li><a asp-action="Detail">Product</a></li>
+			</ul>
+		</div> <!-- End of Breadcrumb-->
+
+		<div class="single-product">
+			<div class="images-section">
+				<div class="larg-img">
+					<img src="~/img/product/@Model.Image">
+				</div>
+@*
+				 <div class="small-img">
+					foreach (Product item in ViewBag.ProductsImage)
+					{
+						<a class="fancybox" rel="group" href="~/img/product/@item.Id">
+							<img src="~/img/product/@item.Image">
+						</a>
+					}
+					<a class="fancybox" rel="group" href="~/img/product/img3.jpg">
+					<img src="~/img/product/img3.jpg">
+					</a>
+					<a class="fancybox" rel="group" href="~/img/product/img4.jpg">
+					<img src="~/img/product/img4.jpg">
+					</a>
+					<a class="fancybox" rel="group" href="~/img/product/img5.jpg">
+					<img src="~/img/product/img5.jpg">
+					</a>
+				</div>*@
+			</div> <!-- End of Images Section-->
+
+			<div class="product-detail">
+				<div class="product-name">
+					<h2>@Model.ProductName</h2>
+				</div>
+				<div class="product-price">
+					<h3>Rs.@Model.Price/-</h3>
+				</div>
+				<hr>
+				<div class="product-description">
+					<p>@Model.Description</p>
+				</div>
+				<hr>
+				<div class="product-cart">
+					<form action="/Cart/Add" method="post" id="cart-form">
+						<div class="form-group">
+							<input type="number" class="cart-number" name="cartNumber" value="1" min="1" max="10">
+							<input type="submit" name="productId" value="Add To Cart">
+						</div>
+					</form>
+					<form id="wishlist-form">
+						<div class="form-group">
+							<input type="checkbox" class="wishlist" name="wishlist"> Add To Wishlist
+						</div>
+					</form>
+				</div>
+				<hr>
+				<div class="product-meta">
+					<p><b>Category: </b> @Model.Category.Name</p>
+					<p><b>Share This Product: </b> Facebook, Twitter</p>
+				</div>
+			</div> <!-- End of Product Detail-->
+		</div>
+		<hr>
+		<div class="product-long-description">
+			<h3>Product Description</h3>
+			<p>
+				
+				@Model.Description
+			</p>
+			@*<p>
+				@Model.Description
+			</p>*@
+		</div>
+		<hr>
+		<div class="new-product-section">
+			<div class="product-section-heading">
+				<h2>Recommend Products <img src="~/img/icons/good_quality.png"></h2>
+				<h3>OUR BEST PRODUCTS RECOMMENDED FOR YOU</h3>
+			</div>
+			<div class="product-content">
+				@foreach (Product item in ViewBag.Products)
+				{
+					<div class="product">
+						<a href="/Products/Detail/@item.Id">
+							<img src="~/img/product/@item.Image">
+						</a>
+						<div class="product-detail">
+							<h3>@item.Category.Name</h3>
+							<h2>@item.ProductName</h2>
+							@*<a href="#">Add to Cart</a>*@
+							<form action="/Cart/Add" method="post">
+								<input type="hidden" name="productId" value="@item.Id">
+								<button type="submit">Add to Cart</button>
+							</form>
+							<p>Rs.@item.Price/-</p>
+						</div>
+					</div>
+				}
+				
+			</div>
+		</div> <!-- Recommend Product Section -->
+	</main> <!-- Main Area -->
+</div>
+@section Scripts{
+
+}

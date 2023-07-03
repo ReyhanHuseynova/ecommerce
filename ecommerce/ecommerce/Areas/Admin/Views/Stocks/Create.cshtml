@@ -1,0 +1,35 @@
+﻿@model Stock
+<div class="col-10">
+	<form method="post">
+		<h4>Add Stock</h4>
+		<div class="form-inline">
+			<div class="form-group">
+				<label>Product Name</label>
+				<select name="pname">
+					<option>---Select a Product---</option>
+					@foreach (Product pro in ViewBag.Product)
+					{
+						<option value="@pro.Id">@pro.ProductName</option>
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<label asp-for="Quantity" ></label>
+				<input asp-for="Quantity">
+				<span class="text-danger" asp-validation-for="Quantity"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="StockOut"></label>
+				<input asp-for="StockOut">
+				<span class="text-danger" asp-validation-for="StockOut"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label></label>
+			<button class="btn btn-warning" type="submit">Add Stock</button>
+		</div>
+	</form>
+</div>
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+}
